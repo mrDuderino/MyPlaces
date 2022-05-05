@@ -16,7 +16,6 @@ class MainTableViewController: UITableViewController {
         "Ketchup Burgers",
         "Tokio City",
         "Burger King",
-        "Bekitzer",
         "Teremok",
         "Cofix",
         "Hitch",
@@ -42,7 +41,15 @@ class MainTableViewController: UITableViewController {
         cell.textLabel?.text = restPlaces[indexPath.row]
         cell.detailTextLabel?.text = "Note about place"
         cell.imageView?.image = UIImage(named: restPlaces[indexPath.row])
+        cell.imageView?.layer.cornerRadius = cell.frame.size.height / 2
+        cell.imageView?.clipsToBounds = true
         return cell
+    }
+    
+    // MARK: - TableView delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
 
     /*
