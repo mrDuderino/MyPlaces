@@ -64,8 +64,8 @@
 			children = (
 				FBEA558828217D9000D8C6F5 /* AppDelegate.swift */,
 				FBEA558A28217D9000D8C6F5 /* SceneDelegate.swift */,
-				FBEA559C2821889A00D8C6F5 /* MainTableViewController.swift */,
 				FB913EF82823E4DA007B9D0C /* PlaceModel.swift */,
+				FBEA559C2821889A00D8C6F5 /* MainTableViewController.swift */,
 				FB913EF62823DA67007B9D0C /* CustomTableViewCell.swift */,
 				FB913EFA28240414007B9D0C /* NewPlaceViewController.swift */,
 				FBEA558E28217D9000D8C6F5 /* Main.storyboard */,
