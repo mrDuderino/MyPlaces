@@ -40,10 +40,15 @@ class MainTableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
-        guard let newPlaceVC = segue.source as? NewPlaceViewController else {return}
-        newPlaceVC.saveNewPlace()
-        tableView.reloadData()
+    // MARK: Table view delegate
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let place = places[indexPath.row]
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { _, _ in
+            StorageManager.deleteObject(place: place)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return [deleteAction]
     }
     
     /*
@@ -55,5 +60,10 @@ class MainTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        guard let newPlaceVC = segue.source as? NewPlaceViewController else {return}
+        newPlaceVC.saveNewPlace()
+        tableView.reloadData()
+    }
 }
