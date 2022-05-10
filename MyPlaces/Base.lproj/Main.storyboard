@@ -226,7 +226,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="PIM-j3-9fN">
-                                                    <rect key="frame" x="96" y="8" width="302" height="69"/>
+                                                    <rect key="frame" x="96" y="8" width="162" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o38-dX-iLZ">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="24.5"/>
@@ -248,17 +248,27 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" placeholderIntrinsicWidth="120" placeholderIntrinsicHeight="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Q6-he-tbf" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="266" y="32.5" width="120" height="20"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="47E-xm-x5e"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PIM-j3-9fN" firstAttribute="leading" secondItem="8n8-A6-fuU" secondAttribute="trailing" constant="16" id="Ah1-N7-1pq"/>
-                                                <constraint firstAttribute="trailing" secondItem="PIM-j3-9fN" secondAttribute="trailing" constant="16" id="GaZ-i7-uzF"/>
+                                                <constraint firstItem="9Q6-he-tbf" firstAttribute="leading" secondItem="PIM-j3-9fN" secondAttribute="trailing" constant="8" id="QCD-Me-Jpl"/>
                                                 <constraint firstItem="8n8-A6-fuU" firstAttribute="leading" secondItem="RbK-jn-g81" secondAttribute="leading" constant="15" id="Smr-IE-kLH"/>
                                                 <constraint firstItem="8n8-A6-fuU" firstAttribute="centerY" secondItem="RbK-jn-g81" secondAttribute="centerY" id="WNP-NC-jjE"/>
                                                 <constraint firstAttribute="bottom" secondItem="PIM-j3-9fN" secondAttribute="bottom" constant="8" id="cAJ-Eb-QQM"/>
                                                 <constraint firstItem="PIM-j3-9fN" firstAttribute="top" secondItem="RbK-jn-g81" secondAttribute="top" constant="8" id="gRz-fa-oKu"/>
+                                                <constraint firstItem="9Q6-he-tbf" firstAttribute="centerY" secondItem="RbK-jn-g81" secondAttribute="centerY" id="l00-kK-uFo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9Q6-he-tbf" secondAttribute="trailing" constant="8" id="rJa-35-hTh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cosmosView" destination="9Q6-he-tbf" id="jvw-pr-rl3"/>
                                             <outlet property="imageOfPlace" destination="8n8-A6-fuU" id="iWt-ni-hWy"/>
                                             <outlet property="locationLabel" destination="dOK-wf-tZg" id="RdL-lA-Hgx"/>
                                             <outlet property="nameLabel" destination="o38-dX-iLZ" id="M9X-TF-BRt"/>
@@ -362,6 +372,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="9Q6-he-tbf">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
         <designable name="Tow-Ju-Dv9">
             <size key="intrinsicContentSize" width="252" height="44"/>
         </designable>

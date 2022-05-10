@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Cosmos
 
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,6 +26,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var reverseSortingButton: UIBarButtonItem!
+    //@IBOutlet weak var cosmosView: CosmosView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,30 +48,20 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering {
-            return filteredPlaces.count
-        }
         
-        return places.isEmpty ? 0 : places.count
+        return isFiltering ? filteredPlaces.count : places.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        var place = Place()
-        
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
+        let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
         
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
         cell.typeLabel.text = place.type
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
-        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
-        cell.imageOfPlace.clipsToBounds = true
+        cell.cosmosView.rating = Double(place.rating)
         
         return cell
     }
@@ -97,14 +90,8 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         guard segue.identifier == "ShowDetail",
               let indexPath = tableView.indexPathForSelectedRow else { return }
         
-        var place = Place()
-        
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
-        
+        let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
+
         guard let destinationVC = segue.destination as? NewPlaceViewController else { return }
         destinationVC.currentPlace = place
     }
@@ -125,12 +112,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func reverseSorting(_ sender: Any) {
         ascendingSorting.toggle()
-        
-        if ascendingSorting {
-            reverseSortingButton.image = UIImage(named: "ZA")
-        } else {
-            reverseSortingButton.image = UIImage(named: "AZ")
-        }
+        reverseSortingButton.image = ascendingSorting ? UIImage(named: "ZA") : UIImage(named: "AZ")
         sorting()
     }
     

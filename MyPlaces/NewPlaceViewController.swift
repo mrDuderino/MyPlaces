@@ -68,15 +68,12 @@ class NewPlaceViewController: UITableViewController {
     }
     
     func savePlace() {
-        var image: UIImage?
-        
-        if imageIsChanged {
-            image = placeImage.image
-        } else {
-            image = UIImage(named: "imagePlaceholder")
-        }
-        
-        let newPlace = Place(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageData: image?.pngData(), rating: ratingControl.rating)
+        let image = imageIsChanged ? placeImage.image : UIImage(named: "imagePlaceholder")
+        let newPlace = Place(name: placeName.text!,
+                             location: placeLocation.text,
+                             type: placeType.text,
+                             imageData: image?.pngData(),
+                             rating: ratingControl.rating)
         
         if currentPlace != nil {
             try! realm.write {
