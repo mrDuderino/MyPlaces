@@ -117,6 +117,13 @@ class NewPlaceViewController: UITableViewController {
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
+    
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showMap", let mapVC = segue.destination as? MapViewController else { return }
+        mapVC.place = currentPlace
+    }
 }
 
 
