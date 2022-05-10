@@ -12,11 +12,10 @@
         <scene sceneID="npV-HD-z8w">
             <objects>
                 <tableViewController modalPresentationStyle="fullScreen" id="bKd-3t-Xe0" customClass="NewPlaceViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="YbB-WW-Xir">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="YbB-WW-Xir">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="bCq-3f-zEG">
                                 <cells>
@@ -29,7 +28,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="Vh5-DO-OLk">
                                                     <rect key="frame" x="20" y="11" width="374" height="228"/>
-                                                    <color key="backgroundColor" red="0.52505862839999995" green="0.52505862839999995" blue="0.52505862839999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -39,6 +38,7 @@
                                                 <constraint firstItem="Vh5-DO-OLk" firstAttribute="leading" secondItem="sFR-JY-jBV" secondAttribute="leadingMargin" id="yQE-Av-fax"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="6Oq-RQ-a7a">
                                         <rect key="frame" x="0.0" y="294.5" width="414" height="80"/>
@@ -74,6 +74,7 @@
                                                 <constraint firstItem="srB-XA-p2r" firstAttribute="leading" secondItem="gdU-nr-xuC" secondAttribute="leading" constant="16" id="wy0-FW-ecq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="np8-oq-iEg">
                                         <rect key="frame" x="0.0" y="374.5" width="414" height="80"/>
@@ -109,6 +110,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="cGq-3E-Mog" secondAttribute="trailing" constant="16" id="Stj-Fm-xg7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="80" id="xFH-1V-oHM">
                                         <rect key="frame" x="0.0" y="454.5" width="414" height="80"/>
@@ -144,6 +146,24 @@
                                                 <constraint firstItem="8hx-iQ-XiM" firstAttribute="top" secondItem="AVl-aa-xA6" secondAttribute="top" constant="8" id="K7C-hc-MbY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="140" id="dJ8-uC-RKb">
+                                        <rect key="frame" x="0.0" y="534.5" width="414" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dJ8-uC-RKb" id="UFH-gy-zC9">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="252" placeholderIntrinsicHeight="44" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Tow-Ju-Dv9" customClass="RatingControl" customModule="MyPlaces" customModuleProvider="target">
+                                                    <rect key="frame" x="81" y="48" width="252" height="44"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Tow-Ju-Dv9" firstAttribute="centerX" secondItem="UFH-gy-zC9" secondAttribute="centerX" id="85c-Lk-JOZ"/>
+                                                <constraint firstItem="Tow-Ju-Dv9" firstAttribute="centerY" secondItem="UFH-gy-zC9" secondAttribute="centerY" id="YgC-re-Cp6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -170,6 +190,7 @@
                         <outlet property="placeLocation" destination="m4q-VJ-2RC" id="Tqp-9b-kmH"/>
                         <outlet property="placeName" destination="Zj3-KZ-YIW" id="5m9-7x-UEB"/>
                         <outlet property="placeType" destination="eOn-PD-l2F" id="tNa-NI-fL7"/>
+                        <outlet property="ratingControl" destination="Tow-Ju-Dv9" id="Kkw-qt-xbf"/>
                         <outlet property="saveButton" destination="TYq-tp-flY" id="r9M-Fq-PaW"/>
                     </connections>
                 </tableViewController>
@@ -340,6 +361,11 @@
             <point key="canvasLocation" x="1422" y="-702"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Tow-Ju-Dv9">
+            <size key="intrinsicContentSize" width="252" height="44"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="KX4-eQ-0ks"/>
     </inferredMetricsTieBreakers>

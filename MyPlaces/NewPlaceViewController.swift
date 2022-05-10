@@ -9,7 +9,7 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
 
-    var currentPlace: Place?
+    var currentPlace: Place!
     var imageIsChanged = false
     
     @IBOutlet weak var placeImage: UIImageView!
@@ -17,11 +17,11 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet weak var placeName: UITextField!
     @IBOutlet weak var placeLocation: UITextField!
     @IBOutlet weak var placeType: UITextField!
+    @IBOutlet weak var ratingControl: RatingControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.tableFooterView = UIView()
+        
         saveButton.isEnabled = false
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
@@ -59,6 +59,14 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
+        } else {
+            cell.separatorInset = tableView.separatorInset
+        }
+    }
+    
     func savePlace() {
         var image: UIImage?
         
@@ -68,7 +76,7 @@ class NewPlaceViewController: UITableViewController {
             image = UIImage(named: "imagePlaceholder")
         }
         
-        let newPlace = Place(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageData: image?.pngData())
+        let newPlace = Place(name: placeName.text!, location: placeLocation.text, type: placeType.text, imageData: image?.pngData(), rating: ratingControl.rating)
         
         if currentPlace != nil {
             try! realm.write {
@@ -76,6 +84,7 @@ class NewPlaceViewController: UITableViewController {
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.imageData = newPlace.imageData
+                currentPlace?.rating = newPlace.rating
             }
         } else {
             StorageManager.saveObject(place: newPlace)
@@ -90,10 +99,11 @@ class NewPlaceViewController: UITableViewController {
                   let image = UIImage(data: data) else { return }
             
             placeImage.image = image
-            placeImage.contentMode = .scaleAspectFill
+            placeImage.contentMode = .scaleAspectFit
             placeName.text = currentPlace?.name
             placeLocation.text = currentPlace?.location
             placeType.text = currentPlace?.type
+            ratingControl.rating = currentPlace.rating
             
         }
     }
