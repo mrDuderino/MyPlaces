@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
     var place: Place!
     var annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
+    let regionInMeters: Double = 10000
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -24,6 +25,13 @@ class MapViewController: UIViewController {
         checkLocationServices()
     }
 
+    @IBAction func centerViewInUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
     @IBAction func exitVC() {
         dismiss(animated: true)
     }
@@ -59,8 +67,18 @@ class MapViewController: UIViewController {
             setupLocationManager()
             checkLocationAuthorization()
         } else {
-            // show alert controller
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.showAlert(withTitle: "Location Service is disabled",
+                          message: "To enable it go: Settings -> Privacy -> Location Services and turn On")
+            }
         }
+    }
+    private func showAlert(withTitle title: String, message: String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        
+        ac.addAction(okAction)
+        present(ac, animated: true)
     }
     
     private func setupLocationManager() {
@@ -75,7 +93,8 @@ class MapViewController: UIViewController {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted, .denied:
-            // show alert controller
+            showAlert(withTitle: "Location Service is not available",
+                      message: "To give permission - go to: Settings -> MyPlaces -> Location")
             break
         case .authorizedAlways:
             break
