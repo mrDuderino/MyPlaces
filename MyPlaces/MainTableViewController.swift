@@ -26,7 +26,6 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var reverseSortingButton: UIBarButtonItem!
-    //@IBOutlet weak var cosmosView: CosmosView!
     
     
     override func viewDidLoad() {
@@ -87,7 +86,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "ShowDetail",
+        guard segue.identifier == "showDetail",
               let indexPath = tableView.indexPathForSelectedRow else { return }
         
         let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
@@ -117,11 +116,15 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     private func sorting() {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
-        } else {
-            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        let index = segmentedControl.selectedSegmentIndex
+        
+        switch index {
+        case 0: places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        case 1: places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        case 2: places = places.sorted(byKeyPath: "rating", ascending: ascendingSorting)
+        default: break
         }
+        
         tableView.reloadData()
     }
 }

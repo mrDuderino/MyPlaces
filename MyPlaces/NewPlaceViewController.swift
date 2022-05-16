@@ -1,4 +1,4 @@
-//
+ //
 //  NewPlaceViewController.swift
 //  MyPlaces
 //
@@ -18,11 +18,14 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet weak var placeLocation: UITextField!
     @IBOutlet weak var placeType: UITextField!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var mapButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         saveButton.isEnabled = false
+        mapButton.isHidden = true
+        
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         setupEditScreen()
     }
@@ -90,6 +93,7 @@ class NewPlaceViewController: UITableViewController {
     
     private func setupEditScreen() {
         if currentPlace != nil {
+            mapButton.isHidden = false
             imageIsChanged = true
             setupNavigationBar()
             guard let data = currentPlace?.imageData,

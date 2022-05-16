@@ -200,6 +200,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapButton" destination="Azo-OI-pM4" id="cec-dQ-bzp"/>
                         <outlet property="placeImage" destination="Vh5-DO-OLk" id="Vap-al-a0F"/>
                         <outlet property="placeLocation" destination="m4q-VJ-2RC" id="Tqp-9b-kmH"/>
                         <outlet property="placeName" destination="Zj3-KZ-YIW" id="5m9-7x-UEB"/>
@@ -330,7 +331,7 @@
                                             <outlet property="locationLabel" destination="dOK-wf-tZg" id="RdL-lA-Hgx"/>
                                             <outlet property="nameLabel" destination="o38-dX-iLZ" id="M9X-TF-BRt"/>
                                             <outlet property="typeLabel" destination="LAz-CM-Hq7" id="bHv-St-WSY"/>
-                                            <segue destination="bKd-3t-Xe0" kind="show" identifier="ShowDetail" id="KX4-eQ-0ks"/>
+                                            <segue destination="bKd-3t-Xe0" kind="show" identifier="showDetail" id="KX4-eQ-0ks"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -344,6 +345,7 @@
                                 <segments>
                                     <segment title="Date"/>
                                     <segment title="Name"/>
+                                    <segment title="Rating"/>
                                 </segments>
                                 <connections>
                                     <action selector="sortSelection:" destination="VRG-G9-2PR" eventType="valueChanged" id="sEn-ls-gIa"/>
