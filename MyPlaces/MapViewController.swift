@@ -8,32 +8,57 @@
 import UIKit
 import MapKit
 
+
+protocol MapViewControllerDelegate {
+    func getAddress(_ address: String?)
+}
+
 class MapViewController: UIViewController {
 
+    var mapViewControllerDelegate: MapViewControllerDelegate?
     var place: Place!
     var annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 10000
+    let regionInMeters: Double = 5000
+    var incomeSegueIdentifier = ""
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapPinImage: UIImageView!
+    @IBOutlet weak var currentAddressLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        currentAddressLabel.text = ""
         mapView.delegate = self
-        setupPlacemark()
+        setupMapView()
         checkLocationServices()
     }
 
     @IBAction func centerViewInUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-        }
+        showUserLocation()
+        
     }
     
     @IBAction func exitVC() {
         dismiss(animated: true)
+    }
+    
+    @IBAction func doneButtonPressed() {
+        mapViewControllerDelegate?.getAddress(currentAddressLabel.text)
+        dismiss(animated: true)
+    }
+    
+    private func setupMapView() {
+        
+        if incomeSegueIdentifier == "showPlace" {
+            currentAddressLabel.isHidden = true
+            doneButton.isHidden = true
+            setupPlacemark()
+            mapPinImage.isHidden = true
+        }
     }
     
     private func setupPlacemark() {
@@ -73,6 +98,22 @@ class MapViewController: UIViewController {
             }
         }
     }
+    
+    private func showUserLocation() {
+        
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
     private func showAlert(withTitle title: String, message: String) {
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -100,6 +141,9 @@ class MapViewController: UIViewController {
             break
         case .authorizedWhenInUse: // in the moment of use
             mapView.showsUserLocation = true
+            if incomeSegueIdentifier == "getAddress" {
+                showUserLocation()
+            }
             break
         @unknown default:
             print("new case is available")
@@ -129,6 +173,35 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = getCenterLocation(for: mapView)
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(center) { placemarks, error in
+            if let error = error {
+                print(error)
+                return
+            } else {
+                guard let placemarks = placemarks else { return }
+                let placemark = placemarks.first
+                let streetName = placemark?.thoroughfare
+                let buildNumber = placemark?.subThoroughfare
+                
+                DispatchQueue.main.async {
+                    if buildNumber != nil && buildNumber != nil {
+                        self.currentAddressLabel.text = "\(streetName!), \(buildNumber!)"
+                    } else if streetName != nil {
+                        self.currentAddressLabel.text = "\(streetName!)"
+                    } else {
+                        self.currentAddressLabel.text = ""
+                    }
+                    
+                }
+                
+            }
+        }
     }
 }
 
