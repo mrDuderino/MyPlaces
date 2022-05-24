@@ -76,8 +76,50 @@
 		FB500165283D205100CA765B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FBEA559C2821889A00D8C6F5 /* MainTableViewController.swift */,
+				FB913EF62823DA67007B9D0C /* CustomTableViewCell.swift */,
+				FB913EFA28240414007B9D0C /* NewPlaceViewController.swift */,
+				FB823900282AE72B003ADC83 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FB500166283D213700CA765B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FB913EF82823E4DA007B9D0C /* PlaceModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FB500167283D214F00CA765B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FBCCFAAF282A5B4000238D06 /* RatingControl.swift */,
+				FBCFAC22283C1A6600DFB96E /* MapManager.swift */,
+				FBF404CC2827EFFB00BEE76D /* StorageManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FB500168283D217B00CA765B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FBEA558828217D9000D8C6F5 /* AppDelegate.swift */,
+				FBEA558A28217D9000D8C6F5 /* SceneDelegate.swift */,
+				FBEA559128217D9200D8C6F5 /* Assets.xcassets */,
+				FBEA559628217D9200D8C6F5 /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		FB500169283D21ED00CA765B /* Interface Builder */ = {
+			isa = PBXGroup;
+			children = (
+				FBEA558E28217D9000D8C6F5 /* Main.storyboard */,
+				FBEA559328217D9200D8C6F5 /* LaunchScreen.storyboard */,
+			);
+			path = "Interface Builder";
 			sourceTree = "<group>";
 		};
 		FBEA557C28217D9000D8C6F5 = {
@@ -101,21 +143,11 @@
 		FBEA558728217D9000D8C6F5 /* MyPlaces */ = {
 			isa = PBXGroup;
 			children = (
+				FB500166283D213700CA765B /* Models */,
 				FB500165283D205100CA765B /* ViewControllers */,
-				FBEA558828217D9000D8C6F5 /* AppDelegate.swift */,
-				FBEA558A28217D9000D8C6F5 /* SceneDelegate.swift */,
-				FB913EF62823DA67007B9D0C /* CustomTableViewCell.swift */,
-				FBCCFAAF282A5B4000238D06 /* RatingControl.swift */,
-				FBF404CC2827EFFB00BEE76D /* StorageManager.swift */,
-				FB913EF82823E4DA007B9D0C /* PlaceModel.swift */,
-				FBEA559C2821889A00D8C6F5 /* MainTableViewController.swift */,
-				FB913EFA28240414007B9D0C /* NewPlaceViewController.swift */,
-				FBCFAC22283C1A6600DFB96E /* MapManager.swift */,
-				FB823900282AE72B003ADC83 /* MapViewController.swift */,
-				FBEA558E28217D9000D8C6F5 /* Main.storyboard */,
-				FBEA559128217D9200D8C6F5 /* Assets.xcassets */,
-				FBEA559328217D9200D8C6F5 /* LaunchScreen.storyboard */,
-				FBEA559628217D9200D8C6F5 /* Info.plist */,
+				FB500167283D214F00CA765B /* Helpers */,
+				FB500168283D217B00CA765B /* Support Files */,
+				FB500169283D21ED00CA765B /* Interface Builder */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -394,7 +426,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2SC3YDNXGQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyPlaces/Info.plist;
+				INFOPLIST_FILE = "MyPlaces/Support Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -423,7 +455,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2SC3YDNXGQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyPlaces/Info.plist;
+				INFOPLIST_FILE = "MyPlaces/Support Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
